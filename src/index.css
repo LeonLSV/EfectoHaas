@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Ranchers&display=swap");
+
 body {
   margin: 0;
   padding: 0;
@@ -6,7 +8,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: black;
+  background: linear-gradient(90deg, #559b65, #94c453);
 }
 
 code {
@@ -16,8 +18,12 @@ code {
 
 ::-webkit-scrollbar {
   width: 10px;
-  background: #15bdfb;
+  background: #559b65;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2987e4;
+  background: #94c453;
+}
+
+body::-webkit-scrollbar-track {
+  background: #559b65; /* color of the tracking area */
 }
