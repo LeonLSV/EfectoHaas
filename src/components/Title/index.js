@@ -25,6 +25,16 @@ export const Title = () => {
       </Row>
       <Row>
         <Col span={24} style={centerTodo}>
+          {/* <a class="nes-btn" href="#">
+            Normal
+          </a> */}
+          <button type="button" className="nes-btn is-success">
+            Ingresar
+          </button>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24} style={centerTodo}>
           <LogoHome src={logonegro} alt="Logo LSV" />
         </Col>
       </Row>
