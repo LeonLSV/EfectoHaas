@@ -6,11 +6,3 @@ body {
   padding: 0;
   background: black;
 }
-
-::-webkit-scrollbar {
-  width: 10px;
-  background: #15bdfb;
-}
-::-webkit-scrollbar-thumb {
-  background: #2987e4;
-}
