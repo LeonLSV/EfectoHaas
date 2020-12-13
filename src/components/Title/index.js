@@ -17,7 +17,7 @@ export const Title = () => {
     <>
       <Row>
         <Col span={24} style={centerTodo}>
-          <TitleHome margintop={"120px"}>Efecto</TitleHome>
+          <TitleHome margintop={"90px"}>Efecto</TitleHome>
         </Col>
       </Row>
       <Row>

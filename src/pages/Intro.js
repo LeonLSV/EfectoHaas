@@ -1,5 +1,10 @@
 import React from "react";
+import { Calculo } from "../components/Calculo";
 
 export const PageIntro = () => {
-  return <div>Adentro</div>;
+  return (
+    <>
+      <Calculo />
+    </>
+  );
 };
