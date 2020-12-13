@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 import logonegro from "../../images/logonegro.png";
-import { TitleHome, LogoHome } from "./style";
+import { TitleHome, LogoHome, ButtonIngresar } from "./style";
 
 const centerTodo = {
   display: "flex",
@@ -16,7 +16,7 @@ export const Title = () => {
     <>
       <Row>
         <Col span={24} style={centerTodo}>
-          <TitleHome margintop={"150px"}>Efecto</TitleHome>
+          <TitleHome margintop={"120px"}>Efecto</TitleHome>
         </Col>
       </Row>
       <Row>
@@ -26,12 +26,7 @@ export const Title = () => {
       </Row>
       <Row>
         <Col span={24} style={centerTodo}>
-          {/* <a class="nes-btn" href="#">
-            Normal
-          </a> */}
-          <button type="button" className="nes-btn is-success">
-            Ingresar
-          </button>
+          <ButtonIngresar type="button">Ingresar</ButtonIngresar>
         </Col>
       </Row>
       <Row>
