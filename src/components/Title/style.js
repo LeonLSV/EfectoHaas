@@ -21,7 +21,7 @@ export const ButtonIngresar = styled.button`
   display: inline-block;
   position: relative;
   text-align: center;
-  font-size: 30px;
+  font-size: 15px;
   padding: 20px;
   font-family: "Press Start 2P", cursive;
   text-decoration: none;

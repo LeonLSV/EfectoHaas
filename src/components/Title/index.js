@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col } from "antd";
 import logonegro from "../../images/logonegro.png";
 import { TitleHome, LogoHome, ButtonIngresar } from "./style";
+import { Link } from "react-router-dom";
 
 const centerTodo = {
   display: "flex",
@@ -26,7 +27,9 @@ export const Title = () => {
       </Row>
       <Row>
         <Col span={24} style={centerTodo}>
-          <ButtonIngresar type="button">Ingresar</ButtonIngresar>
+          <Link to="/intro">
+            <ButtonIngresar type="button">Ingresar</ButtonIngresar>
+          </Link>
         </Col>
       </Row>
       <Row>
