@@ -7,12 +7,22 @@ export const TitleHome = styled.h1`
   text-shadow: black 2px 5px;
   margin-top: ${(props) => props.margintop};
   font-family: "Press Start 2P", cursive;
+  @media (max-width: 720px) {
+    font-size: 70px;
+  }
+  @media (max-width: 450px) {
+    font-size: 50px;
+    line-height: 100px;
+  }
 `;
 
 export const LogoHome = styled.img`
   width: 300px;
   margin: 0;
-  margin-top: 80px;
+  padding: 80px 0;
+  @media (max-width: 720px) {
+    width: 250px;
+  }
 `;
 
 export const ButtonIngresar = styled.button`

@@ -17,12 +17,12 @@ export const Title = () => {
     <>
       <Row>
         <Col span={24} style={centerTodo}>
-          <TitleHome margintop={"90px"}>Efecto</TitleHome>
+          <TitleHome margintop={"78px"}>Efecto</TitleHome>
         </Col>
       </Row>
       <Row>
         <Col span={24} style={centerTodo}>
-          <TitleHome margintop={"-50px"}>Haas</TitleHome>
+          <TitleHome margintop={"-30px"}>Haas</TitleHome>
         </Col>
       </Row>
       <Row>
