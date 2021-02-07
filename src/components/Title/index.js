@@ -39,7 +39,12 @@ export const Title = () => {
       </Row>
       <Row>
         <Col span={24} style={centerTodo}>
-          <LogoHome src={logonegro} alt="Logo LSV" />
+          <a
+            href="https://leonsonidovirtual.com/"
+            target="__blank"
+            rel="noopener noreferer">
+            <LogoHome src={logonegro} alt="Logo LSV" />
+          </a>
         </Col>
       </Row>
     </>

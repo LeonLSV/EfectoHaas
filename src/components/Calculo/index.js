@@ -30,8 +30,6 @@ export const Calculo = () => {
   const sampleInput = useRef(0);
   const temperaturaInput = useRef(0);
 
-  //CONSTANTE
-
   //ESTADOS CANAL 1
   const [atenuacion, setAtenuacion] = useState(null);
   const [paneo, setPaneo] = useState(null);
@@ -42,6 +40,16 @@ export const Calculo = () => {
   const [paneo2, setPaneo2] = useState(null);
   const [dly2, setDly2] = useState(null);
   const [samples2, setSamples2] = useState(null);
+  //ESTADOS CANAL 3
+  const [atenuacion3, setAtenuacion3] = useState(null);
+  const [paneo3, setPaneo3] = useState(null);
+  const [dly3, setDly3] = useState(null);
+  const [samples3, setSamples3] = useState(null);
+  //ESTADOS CANAL 4
+  const [atenuacion4, setAtenuacion4] = useState(null);
+  const [paneo4, setPaneo4] = useState(null);
+  const [dly4, setDly4] = useState(null);
+  const [samples4, setSamples4] = useState(null);
 
   //FUNCION
   const handleCalculador = () => {
@@ -97,7 +105,6 @@ export const Calculo = () => {
 
     const previoSample = 1000 / sample;
     const sample2 = (dly2 / previoSample).toFixed(2);
-    const sample22 = sample2 + samples;
 
     //ASIGNACION
     setAtenuacion2(atenuacionCanal2);
@@ -105,10 +112,50 @@ export const Calculo = () => {
     setDly2(dly2);
     setSamples2(sample2);
 
+    //canal 3 derecha
+    const restoY = distx * restoYRight;
+    const restoY2 = mitadAncho + restoYRight;
+    const result1 = restoY / restoY2;
+    const result2 = distx - result1;
+    const raiz1 = Math.sqrt(Math.pow(result1, 2) + Math.pow(restoYRight, 2));
+    const raiz2 = Math.sqrt(Math.pow(result2, 2) + Math.pow(mitadAncho, 2));
+    const sumaRaices = raiz1 + raiz2;
+    const paneoRight = mitadAncho / result2;
+    const tangente3 = Math.atan(paneoRight) * (180 / Math.PI);
+    const atenuacionCanal3 = (Math.log10(sumaRaices) * 20).toFixed(2);
+    const paneo3 = ((tangente3 * paneoEntrada) / 90).toFixed(2);
+    const dly3 = ((sumaRaices / velocidadSonido) * 1000).toFixed(2);
+    const sample3 = (dly3 / previoSample).toFixed(2);
+
+    //ASIGNACION
+    setAtenuacion3(atenuacionCanal3);
+    setPaneo3(paneo3);
+    setDly3(dly3);
+    setSamples3(sample3);
+
+    //canal 4 izquierda
+    const restoYleft = distx * restoYLeft;
+    const restoYmitad = mitadAncho + restoYLeft;
+    const resultado1 = restoYleft / restoYmitad;
+    const resultado2 = distx - resultado1;
+    const raiz = Math.sqrt(Math.pow(restoYLeft, 2) + Math.pow(resultado1, 2));
+    const raiz22 = Math.sqrt(Math.pow(mitadAncho, 2) + Math.pow(resultado2, 2));
+    const sumaRaiz = raiz + raiz22;
+    const pan = restoYLeft / resultado1;
+    const tangente4 = Math.atan(pan) * (180 / Math.PI);
+    const atenuacionCanal4 = (Math.log10(sumaRaiz) * 20).toFixed(2);
+    const paneo4 = (((tangente4 * paneoEntrada) / 90) * -1).toFixed(2);
+    const dly4 = ((sumaRaiz / velocidadSonido) * 1000).toFixed(2);
+    const sample4 = (dly4 / previoSample).toFixed(2);
+
+    //ASIGNACION
+    setAtenuacion4(atenuacionCanal4);
+    setPaneo4(paneo4);
+    setDly4(dly4);
+    setSamples4(sample4);
+
     //CONSOLA
-    console.log(sample22);
-    console.log(restoYLeft);
-    console.log(restoYRight);
+    console.log("hola");
   };
 
   return (
@@ -126,8 +173,8 @@ export const Calculo = () => {
           xs={{ span: 24, offset: 0 }}
           sm={{ span: 12, offset: 0 }}
           md={{ span: 12, offset: 0 }}
-          lg={{ span: 6, offset: 0 }}
-          xl={{ span: 6, offset: 0 }}
+          lg={{ span: 8, offset: 0 }}
+          xl={{ span: 8, offset: 0 }}
           style={centerTodo}>
           <TextoCalculo size={"15px"}>Dimensión recinto</TextoCalculo>
           <Col
@@ -140,7 +187,7 @@ export const Calculo = () => {
               <input
                 type="number"
                 id="name_field"
-                class="nes-input"
+                className="nes-input"
                 ref={largoInput}
                 style={{ width: "80px", fontSize: "12px" }}
               />
@@ -150,7 +197,7 @@ export const Calculo = () => {
               <input
                 type="number"
                 id="name_field"
-                class="nes-input"
+                className="nes-input"
                 ref={anchoInput}
                 style={{ width: "80px", fontSize: "12px" }}
               />
@@ -161,8 +208,8 @@ export const Calculo = () => {
           xs={{ span: 24, offset: 0 }}
           sm={{ span: 12, offset: 0 }}
           md={{ span: 12, offset: 0 }}
-          lg={{ span: 6, offset: 0 }}
-          xl={{ span: 6, offset: 0 }}
+          lg={{ span: 8, offset: 0 }}
+          xl={{ span: 8, offset: 0 }}
           style={centerTodo}>
           <TextoCalculo size={"15px"}>Dist instrumento</TextoCalculo>
           <Col
@@ -175,7 +222,7 @@ export const Calculo = () => {
               <input
                 type="number"
                 id="name_field"
-                class="nes-input"
+                className="nes-input"
                 ref={distX}
                 style={{ width: "80px", fontSize: "12px" }}
               />
@@ -186,7 +233,7 @@ export const Calculo = () => {
               <input
                 type="number"
                 id="name_field"
-                class="nes-input"
+                className="nes-input"
                 ref={distY}
                 style={{ width: "80px", fontSize: "12px" }}
               />
@@ -197,8 +244,8 @@ export const Calculo = () => {
           xs={{ span: 24, offset: 0 }}
           sm={{ span: 12, offset: 0 }}
           md={{ span: 12, offset: 0 }}
-          lg={{ span: 6, offset: 0 }}
-          xl={{ span: 6, offset: 0 }}
+          lg={{ span: 8, offset: 0 }}
+          xl={{ span: 8, offset: 0 }}
           style={centerTodo}>
           <TextoCalculo size={"15px"}>Otros datos</TextoCalculo>
           <Col
@@ -211,7 +258,7 @@ export const Calculo = () => {
               <input
                 type="number"
                 id="name_field"
-                class="nes-input"
+                className="nes-input"
                 ref={paneoInput}
                 style={{ width: "90px", fontSize: "12px" }}
               />
@@ -221,7 +268,7 @@ export const Calculo = () => {
               <input
                 type="number"
                 id="name_field"
-                class="nes-input"
+                className="nes-input"
                 ref={sampleInput}
                 style={{ width: "110px", fontSize: "11px" }}
               />
@@ -231,7 +278,7 @@ export const Calculo = () => {
               <input
                 type="number"
                 id="name_field"
-                class="nes-input"
+                className="nes-input"
                 ref={temperaturaInput}
                 style={{ width: "80px", fontSize: "12px" }}
               />
@@ -268,18 +315,18 @@ export const Calculo = () => {
         </Col>
         <Col lg={5}>
           <Resultado
-            atenuacion={atenuacion}
-            paneo={paneo}
-            delay={dly}
-            samples={samples}
+            atenuacion={atenuacion3}
+            paneo={paneo3}
+            delay={dly3}
+            samples={samples3}
           />
         </Col>
         <Col lg={5}>
           <Resultado
-            atenuacion={atenuacion}
-            paneo={paneo}
-            delay={dly}
-            samples={samples}
+            atenuacion={atenuacion4}
+            paneo={paneo4}
+            delay={dly4}
+            samples={samples4}
           />
         </Col>
       </Row>
