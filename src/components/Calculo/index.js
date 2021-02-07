@@ -1,11 +1,7 @@
-import React from "react";
-import { Col, Row, InputNumber } from "antd";
+import React, { useState, useRef } from "react";
+import { Col, Row } from "antd";
 import { TextoCalculo } from "./style";
 import { Link } from "react-router-dom";
-
-function onChange(value) {
-  console.log("changed", value);
-}
 
 const centerTodo = {
   display: "flex",
@@ -16,6 +12,24 @@ const centerTodo = {
 };
 
 export const Calculo = () => {
+  const largoInput = useRef(null);
+  const anchoInput = useRef(null);
+  const distX = useRef(null);
+  const distY = useRef(null);
+  const paneoInput = useRef(null);
+  const sampleInput = useRef(null);
+  const temperaturaInput = useRef(null);
+
+  const [mitad, setMitad] = useState("");
+
+  const calculador = () => {
+    const valor = parseInt(largoInput.current.value);
+    const valor2 = parseInt(anchoInput.current.value);
+    const resultado = valor / valor2;
+    console.log(resultado);
+    setMitad(resultado);
+  };
+
   return (
     <>
       <Row>
@@ -42,29 +56,11 @@ export const Calculo = () => {
             }}>
             <Col span={12} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Largo</TextoCalculo>
-              <InputNumber
-                min={0}
-                max={20}
-                defaultValue={16}
-                onChange={onChange}
-                style={{
-                  fontFamily: '"Press Start 2P", cursive',
-                  fontSize: "10px",
-                }}
-              />
+              <input type="number" ref={largoInput} />
             </Col>
             <Col span={12}>
               <TextoCalculo size={"10px"}>Ancho</TextoCalculo>
-              <InputNumber
-                min={0}
-                max={20}
-                defaultValue={10}
-                onChange={onChange}
-                style={{
-                  fontFamily: '"Press Start 2P", cursive',
-                  fontSize: "10px",
-                }}
-              />
+              <input type="number" ref={anchoInput} />
             </Col>
           </Col>
         </Col>
@@ -83,30 +79,12 @@ export const Calculo = () => {
             }}>
             <Col span={12} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Dist en X</TextoCalculo>
-              <InputNumber
-                min={0}
-                max={30}
-                defaultValue={4}
-                onChange={onChange}
-                style={{
-                  fontFamily: '"Press Start 2P", cursive',
-                  fontSize: "10px",
-                }}
-              />
+              <input type="number" ref={distX} />
             </Col>
 
             <Col span={12}>
               <TextoCalculo size={"10px"}>Dist en Y</TextoCalculo>
-              <InputNumber
-                min={0}
-                max={30}
-                defaultValue={2}
-                onChange={onChange}
-                style={{
-                  fontFamily: '"Press Start 2P", cursive',
-                  fontSize: "10px",
-                }}
-              />
+              <input type="number" ref={distY} />
             </Col>
           </Col>
         </Col>
@@ -125,46 +103,21 @@ export const Calculo = () => {
             }}>
             <Col span={7} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Paneo</TextoCalculo>
-              <InputNumber
-                min={0}
-                max={100}
-                defaultValue={100}
-                onChange={onChange}
-                style={{
-                  fontFamily: '"Press Start 2P", cursive',
-                  fontSize: "10px",
-                }}
-              />
+              <input type="number" ref={paneoInput} />
             </Col>
             <Col span={7} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Sample</TextoCalculo>
-              <InputNumber
-                min={0}
-                max={192000}
-                defaultValue={48000}
-                onChange={onChange}
-                style={{
-                  fontFamily: '"Press Start 2P", cursive',
-                  fontSize: "10px",
-                }}
-              />
+              <input type="number" ref={sampleInput} />
             </Col>
             <Col span={7} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Temperatura</TextoCalculo>
-              <InputNumber
-                min={0}
-                max={80}
-                defaultValue={20}
-                onChange={onChange}
-                style={{
-                  fontFamily: '"Press Start 2P", cursive',
-                  fontSize: "10px",
-                }}
-              />
+              <input type="number" ref={temperaturaInput} />
             </Col>
           </Col>
         </Col>
       </Row>
+      <button onClick={calculador}>Calcula</button>
+      <h1>{mitad}</h1>
     </>
   );
 };
