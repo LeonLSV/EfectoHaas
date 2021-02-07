@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import { Col, Row } from "antd";
-import { TextoCalculo } from "./style";
+import { TextoCalculo, InputCal, ContainerCalcular } from "./style";
 import { Link } from "react-router-dom";
+import Resultado from "../Resultados";
 
 const centerTodo = {
   display: "flex",
@@ -20,14 +21,25 @@ export const Calculo = () => {
   const sampleInput = useRef(null);
   const temperaturaInput = useRef(null);
 
-  const [mitad, setMitad] = useState("");
+  let velocidadSonido = 343.5;
 
-  const calculador = () => {
-    const valor = parseInt(largoInput.current.value);
-    const valor2 = parseInt(anchoInput.current.value);
-    const resultado = valor / valor2;
-    console.log(resultado);
-    setMitad(resultado);
+  const handleCalculador = () => {
+    const largo = parseInt(largoInput.current.value);
+    const ancho = parseInt(anchoInput.current.value);
+    const mitadAncho = ancho / 2;
+
+    const distx = parseInt(distX.current.value);
+    const disty = parseInt(distY.current.value);
+    const restoYLeft = mitadAncho + disty;
+    const restoYRight = ancho - mitadAncho - disty;
+    const restoXBack = largo - distx;
+
+    //Raices Canal 1
+    const potenciaDeX = Math.pow(distx, 2);
+    const potenciaDeY = Math.pow(disty, 2);
+    const raizCanal1 = Math.sqrt(potenciaDeX + potenciaDeY);
+
+    console.log(raizCanal1);
   };
 
   return (
@@ -56,11 +68,11 @@ export const Calculo = () => {
             }}>
             <Col span={12} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Largo</TextoCalculo>
-              <input type="number" ref={largoInput} />
+              <InputCal type="number" value="10" ref={largoInput} />
             </Col>
             <Col span={12}>
               <TextoCalculo size={"10px"}>Ancho</TextoCalculo>
-              <input type="number" ref={anchoInput} />
+              <InputCal type="number" value="6" ref={anchoInput} />
             </Col>
           </Col>
         </Col>
@@ -79,12 +91,12 @@ export const Calculo = () => {
             }}>
             <Col span={12} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Dist en X</TextoCalculo>
-              <input type="number" ref={distX} />
+              <InputCal type="number" value="2" ref={distX} />
             </Col>
 
             <Col span={12}>
               <TextoCalculo size={"10px"}>Dist en Y</TextoCalculo>
-              <input type="number" ref={distY} />
+              <InputCal type="number" value="2" ref={distY} />
             </Col>
           </Col>
         </Col>
@@ -103,21 +115,43 @@ export const Calculo = () => {
             }}>
             <Col span={7} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Paneo</TextoCalculo>
-              <input type="number" ref={paneoInput} />
+              <InputCal type="number" value="45" ref={paneoInput} />
             </Col>
             <Col span={7} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Sample</TextoCalculo>
-              <input type="number" ref={sampleInput} />
+              <InputCal type="number" value="20" ref={sampleInput} />
             </Col>
             <Col span={7} style={{ margin: "0 5px" }}>
               <TextoCalculo size={"10px"}>Temperatura</TextoCalculo>
-              <input type="number" ref={temperaturaInput} />
+              <InputCal type="number" value="48000" ref={temperaturaInput} />
             </Col>
           </Col>
         </Col>
       </Row>
-      <button onClick={calculador}>Calcula</button>
-      <h1>{mitad}</h1>
+      <Row justify="center" styled={centerTodo}>
+        <ContainerCalcular>
+          <button
+            type="button"
+            onClick={handleCalculador}
+            className="nes-btn is-primary">
+            Calcular
+          </button>
+        </ContainerCalcular>
+      </Row>
+      <Row justify="center" gutter={32}>
+        <Col lg={5}>
+          <Resultado atenuacion={"19"} />
+        </Col>
+        <Col lg={5}>
+          <Resultado atenuacion="30" />
+        </Col>
+        <Col lg={5}>
+          <Resultado atenuacion="60" />
+        </Col>
+        <Col lg={5}>
+          <Resultado atenuacion="60" />
+        </Col>
+      </Row>
     </>
   );
 };

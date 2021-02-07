@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 import logonegro from "../../images/logonegro.png";
-import { TitleHome, LogoHome, ButtonIngresar } from "./style";
+import { TitleHome, LogoHome } from "./style";
 import { Link } from "react-router-dom";
 
 const centerTodo = {
@@ -25,12 +25,17 @@ export const Title = () => {
           <TitleHome margintop={"-30px"}>Haas</TitleHome>
         </Col>
       </Row>
-      <Row>
-        <Col span={24} style={centerTodo}>
-          <Link to="/intro">
-            <ButtonIngresar type="button">Ingresar</ButtonIngresar>
-          </Link>
-        </Col>
+      <Row style={centerTodo}>
+        <Link to="/intro">
+          <Col span={24} style={centerTodo}>
+            <button type="button" className="nes-btn is-success">
+              Ingresar
+            </button>
+          </Col>
+          <Col span={24} style={centerTodo}>
+            <i className="nes-jp-logo"></i>
+          </Col>
+        </Link>
       </Row>
       <Row>
         <Col span={24} style={centerTodo}>

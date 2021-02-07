@@ -7,6 +7,7 @@ export const TitleHome = styled.h1`
   text-shadow: black 2px 5px;
   margin-top: ${(props) => props.margintop};
   font-family: "Press Start 2P", cursive;
+
   @media (max-width: 720px) {
     font-size: 70px;
   }
