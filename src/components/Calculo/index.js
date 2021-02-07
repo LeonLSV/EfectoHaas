@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Col, Row } from "antd";
-import { TextoCalculo, InputCal, ContainerCalcular } from "./style";
+import { TextoCalculo, ContainerCalcular } from "./style";
 import { Link } from "react-router-dom";
 import Resultado from "../Resultados";
 
@@ -107,6 +107,8 @@ export const Calculo = () => {
 
     //CONSOLA
     console.log(sample22);
+    console.log(restoYLeft);
+    console.log(restoYRight);
   };
 
   return (
