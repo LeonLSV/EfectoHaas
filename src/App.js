@@ -2,6 +2,7 @@ import React from "react";
 import { Title } from "./components/Title";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { PageIntro } from "./pages/Intro";
+import Footer from "./components/Footer";
 
 export const App = () => {
   return (
@@ -12,6 +13,7 @@ export const App = () => {
           <Route exact path="/intro" component={PageIntro} />
         </Switch>
       </BrowserRouter>
+      <Footer />
     </>
   );
 };
