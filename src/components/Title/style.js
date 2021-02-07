@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { fadeIn } from "../../styles/animation";
 
 export const TitleHome = styled.h1`
+  ${fadeIn({ time: "1s" })}
   font-size: 110px;
   margin: 0;
   color: white;
@@ -17,7 +19,12 @@ export const TitleHome = styled.h1`
   }
 `;
 
+export const AnimationButtonIngresar = styled.div`
+  ${fadeIn({ time: "2s" })};
+`;
+
 export const LogoHome = styled.img`
+  ${fadeIn({ time: "2.5s" })};
   width: 300px;
   margin: 0;
   padding: 80px 0;

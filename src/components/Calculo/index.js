@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Col, Row } from "antd";
-import { TextoCalculo, ContainerCalcular } from "./style";
+import { TextoCalculo, ContainerCalcular, Canales } from "./style";
 import { Link } from "react-router-dom";
 import Resultado from "../Resultados";
 
@@ -161,7 +161,7 @@ export const Calculo = () => {
   return (
     <>
       <Row>
-        <Col span={24}>
+        <Col span={24} style={{ textDecoration: "none" }}>
           <Link to="/">
             <TextoCalculo size={"40px"}>Efecto Haas</TextoCalculo>
           </Link>
@@ -298,6 +298,11 @@ export const Calculo = () => {
       </Row>
       <Row justify="center">
         <Col lg={5}>
+          <Canales>
+            <span className="nes-text" style={{ color: "white" }}>
+              Canal Principal
+            </span>
+          </Canales>
           <Resultado
             atenuacion={atenuacion}
             paneo={paneo}
@@ -306,6 +311,11 @@ export const Calculo = () => {
           />
         </Col>
         <Col lg={5}>
+          <Canales>
+            <span className="nes-text" style={{ color: "white" }}>
+              Reflexión Atras
+            </span>
+          </Canales>
           <Resultado
             atenuacion={atenuacion2}
             paneo={paneo2}
@@ -314,6 +324,11 @@ export const Calculo = () => {
           />
         </Col>
         <Col lg={5}>
+          <Canales>
+            <span className="nes-text" style={{ color: "white" }}>
+              Reflexión Derecha
+            </span>
+          </Canales>
           <Resultado
             atenuacion={atenuacion3}
             paneo={paneo3}
@@ -322,6 +337,11 @@ export const Calculo = () => {
           />
         </Col>
         <Col lg={5}>
+          <Canales>
+            <span className="nes-text" style={{ color: "white" }}>
+              Reflexión Izquierda
+            </span>
+          </Canales>
           <Resultado
             atenuacion={atenuacion4}
             paneo={paneo4}

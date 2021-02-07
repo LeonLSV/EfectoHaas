@@ -6,30 +6,38 @@ const Resultado = (props) => {
     <>
       <Row>
         <Col span={24} style={{ padding: "20px" }}>
-          <span className="nes-text is-disabled">Atenuación</span>
+          <span className="nes-text">Atenuación</span>
           <br />
-          <span className="nes-text is-disabled">{props.atenuacion} dBs</span>
+          <span className="nes-text " style={{ color: "white" }}>
+            {props.atenuacion} dBs
+          </span>
           <progress
             className="nes-progress is-primary"
             value={props.atenuacion}
             max="60"></progress>
-          <span className="nes-text is-disabled">Paneo</span>
+          <span className="nes-text">Paneo</span>
           <br />
-          <span className="nes-text is-disabled">{props.paneo} pan</span>
+          <span className="nes-text " style={{ color: "white" }}>
+            {props.paneo} pan
+          </span>
           <progress
             className="nes-progress is-warning"
             value={props.paneo}
             max="100"></progress>
-          <span className="nes-text is-disabled">Delay</span>
+          <span className="nes-text">Delay</span>
           <br />
-          <span className="nes-text is-disabled">{props.delay} ms</span>
+          <span className="nes-text " style={{ color: "white" }}>
+            {props.delay} ms
+          </span>
           <progress
             className="nes-progress is-success"
             value={props.delay}
-            max="50"></progress>
-          <span className="nes-text is-disabled">Samples</span>
+            max="80"></progress>
+          <span className="nes-text">Samples</span>
           <br />
-          <span className="nes-text is-disabled">{props.samples}</span>
+          <span className="nes-text " style={{ color: "white" }}>
+            {props.samples}
+          </span>
           <progress
             className="nes-progress is-pattern"
             value={props.samples}

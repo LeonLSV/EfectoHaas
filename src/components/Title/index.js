@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col } from "antd";
 import logonegro from "../../images/logonegro.png";
-import { TitleHome, LogoHome } from "./style";
+import { TitleHome, LogoHome, AnimationButtonIngresar } from "./style";
 import { Link } from "react-router-dom";
 
 const centerTodo = {
@@ -27,13 +27,17 @@ export const Title = () => {
       </Row>
       <Row style={centerTodo}>
         <Link to="/intro">
-          <Col span={24} style={centerTodo}>
-            <button type="button" className="nes-btn is-success">
-              Ingresar
-            </button>
+          <Col span={24} style={(centerTodo, { textDecoration: "none" })}>
+            <AnimationButtonIngresar>
+              <button type="button" className="nes-btn is-success">
+                Ingresar
+              </button>
+            </AnimationButtonIngresar>
           </Col>
           <Col span={24} style={centerTodo}>
-            <i className="nes-jp-logo"></i>
+            <AnimationButtonIngresar>
+              <i className="nes-jp-logo"></i>
+            </AnimationButtonIngresar>
           </Col>
         </Link>
       </Row>
