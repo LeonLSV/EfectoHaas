@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Col, Row } from "antd";
 import { TextoCalculo, InputCal, ContainerCalcular } from "./style";
 import { Link } from "react-router-dom";
@@ -39,7 +39,11 @@ export const Calculo = () => {
     const potenciaDeY = Math.pow(disty, 2);
     const raizCanal1 = Math.sqrt(potenciaDeX + potenciaDeY);
 
+    console.log(restoYLeft);
+    console.log(restoYRight);
+    console.log(restoXBack);
     console.log(raizCanal1);
+    console.log(velocidadSonido);
   };
 
   return (
@@ -138,7 +142,7 @@ export const Calculo = () => {
           </button>
         </ContainerCalcular>
       </Row>
-      <Row justify="center" gutter={32}>
+      <Row justify="center" gutter={{ xs: 0, sm: 0, md: 0, lg: 12, xl: 32 }}>
         <Col lg={5}>
           <Resultado atenuacion={"19"} />
         </Col>
