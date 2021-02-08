@@ -23,4 +23,12 @@ export const ContainerCalcular = styled.button`
 export const Canales = styled.h2`
   padding: 0 20px;
   font-size: 16px;
+  ${fadeIn({ time: "1.5s" })}
+`;
+
+export const ContainerEfectoInput = styled.div`
+  ${fadeIn({ time: "1.5s" })}
+`;
+export const ContainerEfecto = styled.div`
+  ${fadeIn({ time: "2s" })}
 `;

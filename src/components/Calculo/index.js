@@ -1,6 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Col, Row } from "antd";
-import { TextoCalculo, ContainerCalcular, Canales } from "./style";
+import {
+  TextoCalculo,
+  ContainerCalcular,
+  Canales,
+  ContainerEfecto,
+  ContainerEfectoInput,
+} from "./style";
 import { Link } from "react-router-dom";
 import Resultado from "../Resultados";
 
@@ -153,15 +159,12 @@ export const Calculo = () => {
     setPaneo4(paneo4);
     setDly4(dly4);
     setSamples4(sample4);
-
-    //CONSOLA
-    console.log("hola");
   };
 
   return (
     <>
       <Row>
-        <Col span={24} style={{ textDecoration: "none" }}>
+        <Col span={24} style={{ textDecoration: "none", marginTop: "30px" }}>
           <Link to="/">
             <TextoCalculo size={"40px"}>Efecto Haas</TextoCalculo>
           </Link>
@@ -184,23 +187,27 @@ export const Calculo = () => {
             }}>
             <Col span={12} style={centerCol}>
               <TextoCalculo size={"10px"}>Largo</TextoCalculo>
-              <input
-                type="number"
-                id="name_field"
-                className="nes-input"
-                ref={largoInput}
-                style={{ width: "80px", fontSize: "12px" }}
-              />
+              <ContainerEfectoInput>
+                <input
+                  type="number"
+                  id="name_field"
+                  className="nes-input"
+                  ref={largoInput}
+                  style={{ width: "80px", fontSize: "12px" }}
+                />
+              </ContainerEfectoInput>
             </Col>
             <Col span={12} style={centerCol}>
               <TextoCalculo size={"10px"}>Ancho</TextoCalculo>
-              <input
-                type="number"
-                id="name_field"
-                className="nes-input"
-                ref={anchoInput}
-                style={{ width: "80px", fontSize: "12px" }}
-              />
+              <ContainerEfectoInput>
+                <input
+                  type="number"
+                  id="name_field"
+                  className="nes-input"
+                  ref={anchoInput}
+                  style={{ width: "80px", fontSize: "12px" }}
+                />
+              </ContainerEfectoInput>
             </Col>
           </Col>
         </Col>
@@ -219,24 +226,28 @@ export const Calculo = () => {
             }}>
             <Col span={12} style={centerCol}>
               <TextoCalculo size={"10px"}>Dist en X</TextoCalculo>
-              <input
-                type="number"
-                id="name_field"
-                className="nes-input"
-                ref={distX}
-                style={{ width: "80px", fontSize: "12px" }}
-              />
+              <ContainerEfectoInput>
+                <input
+                  type="number"
+                  id="name_field"
+                  className="nes-input"
+                  ref={distX}
+                  style={{ width: "80px", fontSize: "12px" }}
+                />
+              </ContainerEfectoInput>
             </Col>
 
             <Col span={12} style={centerCol}>
               <TextoCalculo size={"10px"}>Dist en Y</TextoCalculo>
-              <input
-                type="number"
-                id="name_field"
-                className="nes-input"
-                ref={distY}
-                style={{ width: "80px", fontSize: "12px" }}
-              />
+              <ContainerEfectoInput>
+                <input
+                  type="number"
+                  id="name_field"
+                  className="nes-input"
+                  ref={distY}
+                  style={{ width: "80px", fontSize: "12px" }}
+                />
+              </ContainerEfectoInput>
             </Col>
           </Col>
         </Col>
@@ -255,33 +266,39 @@ export const Calculo = () => {
             }}>
             <Col span={7} style={centerCol}>
               <TextoCalculo size={"10px"}>Paneo</TextoCalculo>
-              <input
-                type="number"
-                id="name_field"
-                className="nes-input"
-                ref={paneoInput}
-                style={{ width: "90px", fontSize: "12px" }}
-              />
+              <ContainerEfectoInput>
+                <input
+                  type="number"
+                  id="name_field"
+                  className="nes-input"
+                  ref={paneoInput}
+                  style={{ width: "90px", fontSize: "12px" }}
+                />
+              </ContainerEfectoInput>
             </Col>
             <Col span={7} style={centerCol}>
               <TextoCalculo size={"10px"}>Sample</TextoCalculo>
-              <input
-                type="number"
-                id="name_field"
-                className="nes-input"
-                ref={sampleInput}
-                style={{ width: "110px", fontSize: "11px" }}
-              />
+              <ContainerEfectoInput>
+                <input
+                  type="number"
+                  id="name_field"
+                  className="nes-input"
+                  ref={sampleInput}
+                  style={{ width: "110px", fontSize: "11px" }}
+                />
+              </ContainerEfectoInput>
             </Col>
             <Col span={7} style={centerCol}>
               <TextoCalculo size={"10px"}>Temperatura</TextoCalculo>
-              <input
-                type="number"
-                id="name_field"
-                className="nes-input"
-                ref={temperaturaInput}
-                style={{ width: "80px", fontSize: "12px" }}
-              />
+              <ContainerEfectoInput>
+                <input
+                  type="number"
+                  id="name_field"
+                  className="nes-input"
+                  ref={temperaturaInput}
+                  style={{ width: "80px", fontSize: "12px" }}
+                />
+              </ContainerEfectoInput>
             </Col>
           </Col>
         </Col>
@@ -296,19 +313,21 @@ export const Calculo = () => {
           </button>
         </ContainerCalcular>
       </Row>
-      <Row justify="center">
+      <Row justify="center" style={{ marginTop: "50px" }}>
         <Col lg={5}>
           <Canales>
             <span className="nes-text" style={{ color: "white" }}>
               Canal Principal
             </span>
           </Canales>
-          <Resultado
-            atenuacion={atenuacion}
-            paneo={paneo}
-            delay={dly}
-            samples={samples}
-          />
+          <ContainerEfecto>
+            <Resultado
+              atenuacion={atenuacion}
+              paneo={paneo}
+              delay={dly}
+              samples={samples}
+            />
+          </ContainerEfecto>
         </Col>
         <Col lg={5}>
           <Canales>
@@ -316,38 +335,44 @@ export const Calculo = () => {
               Reflexión Atras
             </span>
           </Canales>
-          <Resultado
-            atenuacion={atenuacion2}
-            paneo={paneo2}
-            delay={dly2}
-            samples={samples2}
-          />
+          <ContainerEfecto>
+            <Resultado
+              atenuacion={atenuacion2}
+              paneo={paneo2}
+              delay={dly2}
+              samples={samples2}
+            />
+          </ContainerEfecto>
         </Col>
         <Col lg={5}>
           <Canales>
             <span className="nes-text" style={{ color: "white" }}>
-              Reflexión Derecha
+              Reflexión DER
             </span>
-          </Canales>
-          <Resultado
-            atenuacion={atenuacion3}
-            paneo={paneo3}
-            delay={dly3}
-            samples={samples3}
-          />
+          </Canales>{" "}
+          <ContainerEfecto>
+            <Resultado
+              atenuacion={atenuacion3}
+              paneo={paneo3}
+              delay={dly3}
+              samples={samples3}
+            />{" "}
+          </ContainerEfecto>
         </Col>
         <Col lg={5}>
           <Canales>
             <span className="nes-text" style={{ color: "white" }}>
-              Reflexión Izquierda
+              Reflexión IZQ
             </span>
           </Canales>
-          <Resultado
-            atenuacion={atenuacion4}
-            paneo={paneo4}
-            delay={dly4}
-            samples={samples4}
-          />
+          <ContainerEfecto>
+            <Resultado
+              atenuacion={atenuacion4}
+              paneo={paneo4}
+              delay={dly4}
+              samples={samples4}
+            />
+          </ContainerEfecto>
         </Col>
       </Row>
     </>
