@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Col, Row } from "antd";
+import { Col, Row, Tooltip } from "antd";
 import {
   TextoCalculo,
   ContainerCalcular,
@@ -186,7 +186,11 @@ export const Calculo = () => {
               flexDirection: "row",
             }}>
             <Col span={12} style={centerCol}>
-              <TextoCalculo size={"10px"}>Largo</TextoCalculo>
+              <Tooltip
+                title="Largo o Profundo (en metros) del cuarto"
+                placement="top">
+                <TextoCalculo size={"10px"}>Largo</TextoCalculo>
+              </Tooltip>
               <ContainerEfectoInput>
                 <input
                   type="number"
@@ -198,7 +202,9 @@ export const Calculo = () => {
               </ContainerEfectoInput>
             </Col>
             <Col span={12} style={centerCol}>
-              <TextoCalculo size={"10px"}>Ancho</TextoCalculo>
+              <Tooltip title="Ancho (en metros) del cuarto" placement="top">
+                <TextoCalculo size={"10px"}>Ancho</TextoCalculo>
+              </Tooltip>
               <ContainerEfectoInput>
                 <input
                   type="number"
@@ -219,13 +225,18 @@ export const Calculo = () => {
           xl={{ span: 8, offset: 0 }}
           style={centerTodo}>
           <TextoCalculo size={"15px"}>Dist instrumento</TextoCalculo>
+
           <Col
             style={{
               display: "flex",
               flexDirection: "row",
             }}>
             <Col span={12} style={centerCol}>
-              <TextoCalculo size={"10px"}>Dist en X</TextoCalculo>
+              <Tooltip
+                title="Distancia al instrumento en linea recta desde el borde del cuarto"
+                placement="top">
+                <TextoCalculo size={"10px"}>Dist en X</TextoCalculo>
+              </Tooltip>
               <ContainerEfectoInput>
                 <input
                   type="number"
@@ -238,7 +249,11 @@ export const Calculo = () => {
             </Col>
 
             <Col span={12} style={centerCol}>
-              <TextoCalculo size={"10px"}>Dist en Y</TextoCalculo>
+              <Tooltip
+                title="Distancia lateral al instrumento desde el centro del cuarto"
+                placement="top">
+                <TextoCalculo size={"10px"}>Dist en Y</TextoCalculo>
+              </Tooltip>
               <ContainerEfectoInput>
                 <input
                   type="number"
@@ -265,7 +280,11 @@ export const Calculo = () => {
               flexDirection: "row",
             }}>
             <Col span={7} style={centerCol}>
-              <TextoCalculo size={"10px"}>Paneo</TextoCalculo>
+              <Tooltip
+                title="Paneo máximo permitido por tu DAW o consola"
+                placement="top">
+                <TextoCalculo size={"10px"}>Paneo</TextoCalculo>
+              </Tooltip>
               <ContainerEfectoInput>
                 <input
                   type="number"
@@ -277,7 +296,9 @@ export const Calculo = () => {
               </ContainerEfectoInput>
             </Col>
             <Col span={7} style={centerCol}>
-              <TextoCalculo size={"10px"}>Sample</TextoCalculo>
+              <Tooltip title="Sample Rate usado en el proyecto" placement="top">
+                <TextoCalculo size={"10px"}>Sample</TextoCalculo>
+              </Tooltip>
               <ContainerEfectoInput>
                 <input
                   type="number"
@@ -289,7 +310,9 @@ export const Calculo = () => {
               </ContainerEfectoInput>
             </Col>
             <Col span={7} style={centerCol}>
-              <TextoCalculo size={"10px"}>Temperatura</TextoCalculo>
+              <Tooltip title="Temperatura ambiente del cuarto" placement="top">
+                <TextoCalculo size={"10px"}>Temperatura</TextoCalculo>
+              </Tooltip>
               <ContainerEfectoInput>
                 <input
                   type="number"
