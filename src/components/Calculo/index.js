@@ -42,13 +42,31 @@ export const Calculo = () => {
     setIsModalVisible(false);
   };
   //INPUTS
-  const largoInput = useRef(0);
-  const anchoInput = useRef(0);
-  const distX = useRef(0);
-  const distY = useRef(0);
-  const paneoInput = useRef(0);
-  const sampleInput = useRef(0);
-  const temperaturaInput = useRef(0);
+  const [valorIniciallargo, setValoriniciallargo] = useState("10");
+  const [valorInicialancho, setValorInicialancho] = useState("6");
+  const [valorInicialY, setValorInicialY] = useState("2");
+  const [valorInicialX, setValorInicialX] = useState("2");
+  const [valorInicialpaneo, setValorInicialpaneo] = useState("45");
+  const [valorInicialsample, setValorInicialsample] = useState("48000");
+  const [valorInicialtemperatura, setValorInicialtemperatura] = useState("20");
+
+  const handleInput = () => {
+    setValoriniciallargo(parseInt(largoInput.current.value));
+    setValorInicialancho(parseInt(anchoInput.current.value));
+    setValorInicialY(parseInt(distYy.current.value));
+    setValorInicialX(parseInt(distXx.current.value));
+    setValorInicialpaneo(parseInt(paneoInput.current.value));
+    setValorInicialsample(parseInt(sampleInput.current.value));
+    setValorInicialtemperatura(parseInt(temperaturaInput.current.value));
+  };
+
+  const largoInput = useRef(null);
+  const anchoInput = useRef(null);
+  const distYy = useRef(null);
+  const distXx = useRef(null);
+  const paneoInput = useRef(null);
+  const sampleInput = useRef(null);
+  const temperaturaInput = useRef(null);
 
   //ESTADOS CANAL 1
   const [atenuacion, setAtenuacion] = useState(null);
@@ -80,14 +98,14 @@ export const Calculo = () => {
     //cuentas
     const largo = parseInt(largoInput.current.value);
     const ancho = parseInt(anchoInput.current.value);
-    const distx = parseInt(distX.current.value);
-    const disty = parseInt(distY.current.value);
+    const distYY = parseInt(distYy.current.value);
+    const distXX = parseInt(distXx.current.value);
     const sample = parseInt(sampleInput.current.value);
     const paneoEntrada = parseInt(paneoInput.current.value);
     if (
       largo <= 0 ||
       ancho <= 0 ||
-      distx <= 0 ||
+      distYY <= 0 ||
       sample <= 0 ||
       paneoEntrada <= 0 ||
       temp <= 0
@@ -97,15 +115,15 @@ export const Calculo = () => {
       );
     } else {
       const mitadAncho = ancho / 2;
-      const restoYLeft = mitadAncho + disty;
-      const restoYRight = ancho - mitadAncho - disty;
-      const restoXBack = largo - distx;
+      const restoYLeft = mitadAncho + distXX;
+      const restoYRight = ancho - mitadAncho - distXX;
+      const restoXBack = largo - distYY;
       //Canal 1
-      const potenciaDeX = Math.pow(distx, 2);
-      const potenciaDeY = Math.pow(disty, 2);
+      const potenciaDeX = Math.pow(distYY, 2);
+      const potenciaDeY = Math.pow(distXX, 2);
       const raizCanal1 = Math.sqrt(potenciaDeX + potenciaDeY);
       const atenuacionPorDistancia = (Math.log10(raizCanal1) * 20).toFixed(2);
-      const arcoTangente = Math.atan(disty / distx);
+      const arcoTangente = Math.atan(distXX / distYY);
       const gradosPaneo = arcoTangente * (180 / Math.PI);
 
       const paneoFinal = ((paneoEntrada * gradosPaneo) / 90).toFixed(2);
@@ -119,8 +137,8 @@ export const Calculo = () => {
       setSamples(samples);
 
       //Canal 2
-      const restoBack = (disty * restoXBack) / (largo + restoXBack);
-      const restoBack2 = disty - restoBack;
+      const restoBack = (distXX * restoXBack) / (largo + restoXBack);
+      const restoBack2 = distXX - restoBack;
       const raizCanal2 = Math.sqrt(
         Math.pow(restoBack, 2) + Math.pow(restoXBack, 2)
       );
@@ -145,10 +163,10 @@ export const Calculo = () => {
       setSamples2(sample2);
 
       //canal 3 derecha
-      const restoY = distx * restoYRight;
+      const restoY = distYY * restoYRight;
       const restoY2 = mitadAncho + restoYRight;
       const result1 = restoY / restoY2;
-      const result2 = distx - result1;
+      const result2 = distYY - result1;
       const raiz1 = Math.sqrt(Math.pow(result1, 2) + Math.pow(restoYRight, 2));
       const raiz2 = Math.sqrt(Math.pow(result2, 2) + Math.pow(mitadAncho, 2));
       const sumaRaices = raiz1 + raiz2;
@@ -166,10 +184,10 @@ export const Calculo = () => {
       setSamples3(sample3);
 
       //canal 4 izquierda
-      const restoYleft = distx * restoYLeft;
+      const restoYleft = distYY * restoYLeft;
       const restoYmitad = mitadAncho + restoYLeft;
       const resultado1 = restoYleft / restoYmitad;
-      const resultado2 = distx - resultado1;
+      const resultado2 = distYY - resultado1;
       const raiz = Math.sqrt(Math.pow(restoYLeft, 2) + Math.pow(resultado1, 2));
       const raiz22 = Math.sqrt(
         Math.pow(mitadAncho, 2) + Math.pow(resultado2, 2)
@@ -237,8 +255,9 @@ export const Calculo = () => {
                   id="largo"
                   label="largo"
                   className="nes-input"
+                  value={valorIniciallargo}
+                  onChange={handleInput}
                   ref={largoInput}
-                  placeholder="10"
                   style={{ width: "80px", fontSize: "12px" }}
                 />
               </ContainerEfectoInput>
@@ -253,7 +272,8 @@ export const Calculo = () => {
                   id="Ancho"
                   label="ancho"
                   className="nes-input"
-                  placeholder="14"
+                  value={valorInicialancho}
+                  onChange={handleInput}
                   ref={anchoInput}
                   style={{ width: "80px", fontSize: "12px" }}
                 />
@@ -283,12 +303,13 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
-                  placeholder="3"
                   type="number"
                   label="distY"
                   id="Y"
                   className="nes-input"
-                  ref={distX}
+                  value={valorInicialY}
+                  onChange={handleInput}
+                  ref={distYy}
                   style={{ width: "80px", fontSize: "12px" }}
                 />
               </ContainerEfectoInput>
@@ -302,12 +323,13 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
-                  placeholder="-4"
+                  value={valorInicialX}
+                  onChange={handleInput}
                   type="number"
                   label="distX"
                   id="X"
                   className="nes-input"
-                  ref={distY}
+                  ref={distXx}
                   style={{ width: "80px", fontSize: "12px" }}
                 />
               </ContainerEfectoInput>
@@ -335,7 +357,8 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
-                  placeholder="65"
+                  value={valorInicialpaneo}
+                  onChange={handleInput}
                   label="paneo"
                   type="number"
                   id="paneo"
@@ -353,7 +376,8 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
-                  placeholder="88000"
+                  value={valorInicialsample}
+                  onChange={handleInput}
                   type="number"
                   id="sample"
                   className="nes-input"
@@ -374,7 +398,8 @@ export const Calculo = () => {
                   type="number"
                   id="temperatura"
                   className="nes-input"
-                  placeholder="14"
+                  value={valorInicialtemperatura}
+                  onChange={handleInput}
                   ref={temperaturaInput}
                   style={{ width: "80px", fontSize: "12px" }}
                 />
