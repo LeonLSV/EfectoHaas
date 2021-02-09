@@ -6,6 +6,7 @@ import {
   Canales,
   ContainerEfecto,
   ContainerEfectoInput,
+  ButtonFocus,
 } from "./style";
 import { Link } from "react-router-dom";
 import Resultado from "../Resultados";
@@ -207,7 +208,8 @@ export const Calculo = () => {
               <ContainerEfectoInput>
                 <input
                   type="number"
-                  id="name_field"
+                  id="largo"
+                  label="largo"
                   className="nes-input"
                   ref={largoInput}
                   style={{ width: "80px", fontSize: "12px" }}
@@ -221,7 +223,8 @@ export const Calculo = () => {
               <ContainerEfectoInput>
                 <input
                   type="number"
-                  id="name_field"
+                  id="Ancho"
+                  label="ancho"
                   className="nes-input"
                   ref={anchoInput}
                   style={{ width: "80px", fontSize: "12px" }}
@@ -253,7 +256,8 @@ export const Calculo = () => {
               <ContainerEfectoInput>
                 <input
                   type="number"
-                  id="name_field"
+                  label="distY"
+                  id="Y"
                   className="nes-input"
                   ref={distX}
                   style={{ width: "80px", fontSize: "12px" }}
@@ -270,7 +274,8 @@ export const Calculo = () => {
               <ContainerEfectoInput>
                 <input
                   type="number"
-                  id="name_field"
+                  label="distX"
+                  id="X"
                   className="nes-input"
                   ref={distY}
                   style={{ width: "80px", fontSize: "12px" }}
@@ -300,8 +305,9 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
+                  label="paneo"
                   type="number"
-                  id="name_field"
+                  id="paneo"
                   className="nes-input"
                   ref={paneoInput}
                   style={{ width: "90px", fontSize: "12px" }}
@@ -317,7 +323,7 @@ export const Calculo = () => {
               <ContainerEfectoInput>
                 <input
                   type="number"
-                  id="name_field"
+                  id="sample"
                   className="nes-input"
                   ref={sampleInput}
                   style={{ width: "110px", fontSize: "11px" }}
@@ -332,8 +338,9 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
+                  label="temperatura"
                   type="number"
-                  id="name_field"
+                  id="temperatura"
                   className="nes-input"
                   ref={temperaturaInput}
                   style={{ width: "80px", fontSize: "12px" }}
@@ -345,19 +352,19 @@ export const Calculo = () => {
       </Row>
       <Row justify="center" styled={centerTodo}>
         <ContainerCalcular>
-          <button
+          <ButtonFocus
             type="button"
             onClick={handleCalculador}
             className="nes-btn is-primary">
             Calcular
-          </button>
+          </ButtonFocus>
         </ContainerCalcular>
       </Row>
       <Row justify="center" styled={centerTodo}>
         <ContainerCalcular>
-          <button type="button" className="nes-btn " onClick={showModal}>
+          <ButtonFocus type="button" className="nes-btn " onClick={showModal}>
             Ver Mapa
-          </button>
+          </ButtonFocus>
 
           <Modal
             title="Mapa"

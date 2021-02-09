@@ -1,7 +1,13 @@
 import React from "react";
 import { Row, Col } from "antd";
 import logonegro from "../../images/logonegro.png";
-import { TitleHome, LogoHome, AnimationButtonIngresar } from "./style";
+import {
+  TitleHome,
+  LogoHome,
+  AnimationButtonIngresar,
+  ButtonIngresar,
+  AnchorLogo,
+} from "./style";
 import { Link } from "react-router-dom";
 
 const centerTodo = {
@@ -29,9 +35,9 @@ export const Title = () => {
         <Link to="/intro">
           <Col span={24} style={(centerTodo, { textDecoration: "none" })}>
             <AnimationButtonIngresar>
-              <button type="button" className="nes-btn is-success">
+              <ButtonIngresar type="button" className="nes-btn is-success">
                 Ingresar
-              </button>
+              </ButtonIngresar>
             </AnimationButtonIngresar>
           </Col>
           <Col span={24} style={centerTodo}>
@@ -43,12 +49,12 @@ export const Title = () => {
       </Row>
       <Row>
         <Col span={24} style={centerTodo}>
-          <a
+          <AnchorLogo
             href="https://leonsonidovirtual.com/"
             target="__blank"
             rel="noopener noreferer">
             <LogoHome src={logonegro} alt="Logo LSV" />
-          </a>
+          </AnchorLogo>
         </Col>
       </Row>
     </>

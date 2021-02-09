@@ -32,3 +32,9 @@ export const ContainerEfectoInput = styled.div`
 export const ContainerEfecto = styled.div`
   ${fadeIn({ time: "2s" })}
 `;
+
+export const ButtonFocus = styled.button`
+  &:focus {
+    transform: scale(1.1);
+  }
+`;
