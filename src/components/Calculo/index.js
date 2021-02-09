@@ -355,7 +355,7 @@ export const Calculo = () => {
       </Row>
       <Row justify="center" styled={centerTodo}>
         <ContainerCalcular>
-          <button type="button" class="nes-btn " onClick={showModal}>
+          <button type="button" className="nes-btn " onClick={showModal}>
             Ver Mapa
           </button>
 
