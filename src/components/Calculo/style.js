@@ -11,9 +11,9 @@ export const TextoCalculo = styled.h3`
   outline: none;
 `;
 
-export const ContainerCalcular = styled.button`
+export const ContainerCalcular = styled.div`
   ${fadeIn({ time: "1s" })}
-  margin: 30px 0;
+  margin-top: 30px;
   outline: none;
   text-decoration: none;
   background: none;

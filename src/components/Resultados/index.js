@@ -41,7 +41,7 @@ const Resultado = (props) => {
           <progress
             className="nes-progress is-pattern"
             value={props.samples}
-            max="1000"></progress>
+            max="4000"></progress>
         </Col>
       </Row>
     </>

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Col, Row, Tooltip } from "antd";
+import { Col, Row, Tooltip, Modal, Image } from "antd";
 import {
   TextoCalculo,
   ContainerCalcular,
@@ -9,6 +9,7 @@ import {
 } from "./style";
 import { Link } from "react-router-dom";
 import Resultado from "../Resultados";
+import mapa from "../../images/mapa.png";
 
 const centerTodo = {
   display: "flex",
@@ -27,6 +28,18 @@ const centerCol = {
 };
 
 export const Calculo = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   //INPUTS
   const largoInput = useRef(0);
   const anchoInput = useRef(0);
@@ -83,7 +96,7 @@ export const Calculo = () => {
     const gradosPaneo = arcoTangente * (180 / Math.PI);
 
     const paneoEntrada = parseInt(paneoInput.current.value);
-    const paneoFinal = (paneoEntrada * gradosPaneo) / 90;
+    const paneoFinal = ((paneoEntrada * gradosPaneo) / 90).toFixed(2);
     const dly = ((raizCanal1 / velocidadSonido) * 1000).toFixed(2);
     const sample = parseInt(sampleInput.current.value);
     const samples = (dly / (1000 / sample)).toFixed(2);
@@ -235,7 +248,7 @@ export const Calculo = () => {
               <Tooltip
                 title="Distancia al instrumento en linea recta desde el borde del cuarto"
                 placement="top">
-                <TextoCalculo size={"10px"}>Dist en X</TextoCalculo>
+                <TextoCalculo size={"10px"}>Dist en Y</TextoCalculo>
               </Tooltip>
               <ContainerEfectoInput>
                 <input
@@ -252,7 +265,7 @@ export const Calculo = () => {
               <Tooltip
                 title="Distancia lateral al instrumento desde el centro del cuarto"
                 placement="top">
-                <TextoCalculo size={"10px"}>Dist en Y</TextoCalculo>
+                <TextoCalculo size={"10px"}>Dist en X</TextoCalculo>
               </Tooltip>
               <ContainerEfectoInput>
                 <input
@@ -281,7 +294,7 @@ export const Calculo = () => {
             }}>
             <Col span={7} style={centerCol}>
               <Tooltip
-                title="Paneo máximo permitido por tu DAW o consola"
+                title="Paneo máximo permitido por tu DAW o consola (100)"
                 placement="top">
                 <TextoCalculo size={"10px"}>Paneo</TextoCalculo>
               </Tooltip>
@@ -296,7 +309,9 @@ export const Calculo = () => {
               </ContainerEfectoInput>
             </Col>
             <Col span={7} style={centerCol}>
-              <Tooltip title="Sample Rate usado en el proyecto" placement="top">
+              <Tooltip
+                title="Sample Rate usado en el proyecto (48000)"
+                placement="top">
                 <TextoCalculo size={"10px"}>Sample</TextoCalculo>
               </Tooltip>
               <ContainerEfectoInput>
@@ -310,7 +325,9 @@ export const Calculo = () => {
               </ContainerEfectoInput>
             </Col>
             <Col span={7} style={centerCol}>
-              <Tooltip title="Temperatura ambiente del cuarto" placement="top">
+              <Tooltip
+                title="Temperatura ambiente del cuarto en grados C° (20)"
+                placement="top">
                 <TextoCalculo size={"10px"}>Temperatura</TextoCalculo>
               </Tooltip>
               <ContainerEfectoInput>
@@ -336,6 +353,22 @@ export const Calculo = () => {
           </button>
         </ContainerCalcular>
       </Row>
+      <Row justify="center" styled={centerTodo}>
+        <ContainerCalcular>
+          <button type="button" class="nes-btn " onClick={showModal}>
+            Ver Mapa
+          </button>
+
+          <Modal
+            title="Mapa"
+            visible={isModalVisible}
+            onOk={handleOk}
+            onCancel={handleCancel}>
+            <Image width={200} src={mapa} />
+          </Modal>
+        </ContainerCalcular>
+      </Row>
+
       <Row justify="center" style={{ marginTop: "50px" }}>
         <Col lg={5}>
           <Canales>
