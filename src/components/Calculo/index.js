@@ -80,106 +80,132 @@ export const Calculo = () => {
     //cuentas
     const largo = parseInt(largoInput.current.value);
     const ancho = parseInt(anchoInput.current.value);
-    const mitadAncho = ancho / 2;
-
     const distx = parseInt(distX.current.value);
     const disty = parseInt(distY.current.value);
-    const restoYLeft = mitadAncho + disty;
-    const restoYRight = ancho - mitadAncho - disty;
-    const restoXBack = largo - distx;
-
-    //Canal 1
-    const potenciaDeX = Math.pow(distx, 2);
-    const potenciaDeY = Math.pow(disty, 2);
-    const raizCanal1 = Math.sqrt(potenciaDeX + potenciaDeY);
-    const atenuacionPorDistancia = (Math.log10(raizCanal1) * 20).toFixed(2);
-    const arcoTangente = Math.atan(disty / distx);
-    const gradosPaneo = arcoTangente * (180 / Math.PI);
-
-    const paneoEntrada = parseInt(paneoInput.current.value);
-    const paneoFinal = ((paneoEntrada * gradosPaneo) / 90).toFixed(2);
-    const dly = ((raizCanal1 / velocidadSonido) * 1000).toFixed(2);
     const sample = parseInt(sampleInput.current.value);
-    const samples = (dly / (1000 / sample)).toFixed(2);
+    const paneoEntrada = parseInt(paneoInput.current.value);
+    if (
+      largo <= 0 ||
+      ancho <= 0 ||
+      distx <= 0 ||
+      sample <= 0 ||
+      paneoEntrada <= 0 ||
+      temp <= 0
+    ) {
+      alert(
+        "Por favor ingrese números mayores a 0 (Excepto en Dist X que si permite valores negativos y el 0)"
+      );
+    } else {
+      const mitadAncho = ancho / 2;
+      const restoYLeft = mitadAncho + disty;
+      const restoYRight = ancho - mitadAncho - disty;
+      const restoXBack = largo - distx;
+      //Canal 1
+      const potenciaDeX = Math.pow(distx, 2);
+      const potenciaDeY = Math.pow(disty, 2);
+      const raizCanal1 = Math.sqrt(potenciaDeX + potenciaDeY);
+      const atenuacionPorDistancia = (Math.log10(raizCanal1) * 20).toFixed(2);
+      const arcoTangente = Math.atan(disty / distx);
+      const gradosPaneo = arcoTangente * (180 / Math.PI);
 
-    //ASIGNACION
-    setAtenuacion(atenuacionPorDistancia);
-    setPaneo(paneoFinal);
-    setDly(dly);
-    setSamples(samples);
+      const paneoFinal = ((paneoEntrada * gradosPaneo) / 90).toFixed(2);
+      const dly = ((raizCanal1 / velocidadSonido) * 1000).toFixed(2);
+      const samples = (dly / (1000 / sample)).toFixed(2);
 
-    //Canal 2
-    const restoBack = (disty * restoXBack) / (largo + restoXBack);
-    const restoBack2 = disty - restoBack;
-    const raizCanal2 = Math.sqrt(
-      Math.pow(restoBack, 2) + Math.pow(restoXBack, 2)
-    );
-    const raiz2Canal2 = Math.sqrt(Math.pow(restoBack2, 2) + Math.pow(largo, 2));
-    const raizRaiz = raizCanal2 + raiz2Canal2;
+      //ASIGNACION
+      setAtenuacion(atenuacionPorDistancia);
+      setPaneo(paneoFinal);
+      setDly(dly);
+      setSamples(samples);
 
-    const atenuacionCanal2 = (Math.log10(raizRaiz) * 20).toFixed(2);
-    const paneoAtras = restoBack2 / largo;
-    const tangente2 = Math.atan(paneoAtras) * (180 / Math.PI);
-    const paneo2 = ((tangente2 * paneoEntrada) / 90).toFixed(2);
-    const dly2 = ((raizRaiz / velocidadSonido) * 1000).toFixed(2);
+      //Canal 2
+      const restoBack = (disty * restoXBack) / (largo + restoXBack);
+      const restoBack2 = disty - restoBack;
+      const raizCanal2 = Math.sqrt(
+        Math.pow(restoBack, 2) + Math.pow(restoXBack, 2)
+      );
+      const raiz2Canal2 = Math.sqrt(
+        Math.pow(restoBack2, 2) + Math.pow(largo, 2)
+      );
+      const raizRaiz = raizCanal2 + raiz2Canal2;
 
-    const previoSample = 1000 / sample;
-    const sample2 = (dly2 / previoSample).toFixed(2);
+      const atenuacionCanal2 = (Math.log10(raizRaiz) * 20).toFixed(2);
+      const paneoAtras = restoBack2 / largo;
+      const tangente2 = Math.atan(paneoAtras) * (180 / Math.PI);
+      const paneo2 = ((tangente2 * paneoEntrada) / 90).toFixed(2);
+      const dly2 = ((raizRaiz / velocidadSonido) * 1000).toFixed(2);
 
-    //ASIGNACION
-    setAtenuacion2(atenuacionCanal2);
-    setPaneo2(paneo2);
-    setDly2(dly2);
-    setSamples2(sample2);
+      const previoSample = 1000 / sample;
+      const sample2 = (dly2 / previoSample).toFixed(2);
 
-    //canal 3 derecha
-    const restoY = distx * restoYRight;
-    const restoY2 = mitadAncho + restoYRight;
-    const result1 = restoY / restoY2;
-    const result2 = distx - result1;
-    const raiz1 = Math.sqrt(Math.pow(result1, 2) + Math.pow(restoYRight, 2));
-    const raiz2 = Math.sqrt(Math.pow(result2, 2) + Math.pow(mitadAncho, 2));
-    const sumaRaices = raiz1 + raiz2;
-    const paneoRight = mitadAncho / result2;
-    const tangente3 = Math.atan(paneoRight) * (180 / Math.PI);
-    const atenuacionCanal3 = (Math.log10(sumaRaices) * 20).toFixed(2);
-    const paneo3 = ((tangente3 * paneoEntrada) / 90).toFixed(2);
-    const dly3 = ((sumaRaices / velocidadSonido) * 1000).toFixed(2);
-    const sample3 = (dly3 / previoSample).toFixed(2);
+      //ASIGNACION
+      setAtenuacion2(atenuacionCanal2);
+      setPaneo2(paneo2);
+      setDly2(dly2);
+      setSamples2(sample2);
 
-    //ASIGNACION
-    setAtenuacion3(atenuacionCanal3);
-    setPaneo3(paneo3);
-    setDly3(dly3);
-    setSamples3(sample3);
+      //canal 3 derecha
+      const restoY = distx * restoYRight;
+      const restoY2 = mitadAncho + restoYRight;
+      const result1 = restoY / restoY2;
+      const result2 = distx - result1;
+      const raiz1 = Math.sqrt(Math.pow(result1, 2) + Math.pow(restoYRight, 2));
+      const raiz2 = Math.sqrt(Math.pow(result2, 2) + Math.pow(mitadAncho, 2));
+      const sumaRaices = raiz1 + raiz2;
+      const paneoRight = mitadAncho / result2;
+      const tangente3 = Math.atan(paneoRight) * (180 / Math.PI);
+      const atenuacionCanal3 = (Math.log10(sumaRaices) * 20).toFixed(2);
+      const paneo3 = ((tangente3 * paneoEntrada) / 90).toFixed(2);
+      const dly3 = ((sumaRaices / velocidadSonido) * 1000).toFixed(2);
+      const sample3 = (dly3 / previoSample).toFixed(2);
 
-    //canal 4 izquierda
-    const restoYleft = distx * restoYLeft;
-    const restoYmitad = mitadAncho + restoYLeft;
-    const resultado1 = restoYleft / restoYmitad;
-    const resultado2 = distx - resultado1;
-    const raiz = Math.sqrt(Math.pow(restoYLeft, 2) + Math.pow(resultado1, 2));
-    const raiz22 = Math.sqrt(Math.pow(mitadAncho, 2) + Math.pow(resultado2, 2));
-    const sumaRaiz = raiz + raiz22;
-    const pan = restoYLeft / resultado1;
-    const tangente4 = Math.atan(pan) * (180 / Math.PI);
-    const atenuacionCanal4 = (Math.log10(sumaRaiz) * 20).toFixed(2);
-    const paneo4 = (((tangente4 * paneoEntrada) / 90) * -1).toFixed(2);
-    const dly4 = ((sumaRaiz / velocidadSonido) * 1000).toFixed(2);
-    const sample4 = (dly4 / previoSample).toFixed(2);
+      //ASIGNACION
+      setAtenuacion3(atenuacionCanal3);
+      setPaneo3(paneo3);
+      setDly3(dly3);
+      setSamples3(sample3);
 
-    //ASIGNACION
-    setAtenuacion4(atenuacionCanal4);
-    setPaneo4(paneo4);
-    setDly4(dly4);
-    setSamples4(sample4);
+      //canal 4 izquierda
+      const restoYleft = distx * restoYLeft;
+      const restoYmitad = mitadAncho + restoYLeft;
+      const resultado1 = restoYleft / restoYmitad;
+      const resultado2 = distx - resultado1;
+      const raiz = Math.sqrt(Math.pow(restoYLeft, 2) + Math.pow(resultado1, 2));
+      const raiz22 = Math.sqrt(
+        Math.pow(mitadAncho, 2) + Math.pow(resultado2, 2)
+      );
+      const sumaRaiz = raiz + raiz22;
+      const pan = restoYLeft / resultado1;
+      const tangente4 = Math.atan(pan) * (180 / Math.PI);
+      const atenuacionCanal4 = (Math.log10(sumaRaiz) * 20).toFixed(2);
+      const paneo4 = (((tangente4 * paneoEntrada) / 90) * -1).toFixed(2);
+      const dly4 = ((sumaRaiz / velocidadSonido) * 1000).toFixed(2);
+      const sample4 = (dly4 / previoSample).toFixed(2);
+
+      //ASIGNACION
+      setAtenuacion4(atenuacionCanal4);
+      setPaneo4(paneo4);
+      setDly4(dly4);
+      setSamples4(sample4);
+    }
   };
 
   return (
     <>
-      <Row>
-        <Col span={24} style={{ textDecoration: "none", marginTop: "30px" }}>
-          <Link to="/">
+      <Row justify="center">
+        <Col
+          span={8}
+          style={{
+            marginTop: "30px",
+            display: "flex",
+            justifyContent: "center",
+          }}>
+          <Link
+            to="/"
+            style={{
+              outline: "none",
+              textDecoration: "none",
+            }}>
             <TextoCalculo size={"40px"}>Efecto Haas</TextoCalculo>
           </Link>
         </Col>
@@ -212,6 +238,7 @@ export const Calculo = () => {
                   label="largo"
                   className="nes-input"
                   ref={largoInput}
+                  placeholder="10"
                   style={{ width: "80px", fontSize: "12px" }}
                 />
               </ContainerEfectoInput>
@@ -226,6 +253,7 @@ export const Calculo = () => {
                   id="Ancho"
                   label="ancho"
                   className="nes-input"
+                  placeholder="14"
                   ref={anchoInput}
                   style={{ width: "80px", fontSize: "12px" }}
                 />
@@ -255,6 +283,7 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
+                  placeholder="3"
                   type="number"
                   label="distY"
                   id="Y"
@@ -273,6 +302,7 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
+                  placeholder="-4"
                   type="number"
                   label="distX"
                   id="X"
@@ -305,6 +335,7 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
+                  placeholder="65"
                   label="paneo"
                   type="number"
                   id="paneo"
@@ -322,6 +353,7 @@ export const Calculo = () => {
               </Tooltip>
               <ContainerEfectoInput>
                 <input
+                  placeholder="88000"
                   type="number"
                   id="sample"
                   className="nes-input"
@@ -342,6 +374,7 @@ export const Calculo = () => {
                   type="number"
                   id="temperatura"
                   className="nes-input"
+                  placeholder="14"
                   ref={temperaturaInput}
                   style={{ width: "80px", fontSize: "12px" }}
                 />

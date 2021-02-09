@@ -26,6 +26,7 @@ export const AnimationButtonIngresar = styled.div`
 export const LogoHome = styled.img`
   ${fadeIn({ time: "2.5s" })};
   width: 300px;
+  height: auto;
   margin: 0;
   padding: 80px 0;
   @media (max-width: 720px) {
@@ -42,6 +43,9 @@ export const ButtonIngresar = styled.button`
 
 export const AnchorLogo = styled.a`
   &:focus {
+    transform: scale(1.1);
+  }
+  &:hover {
     transform: scale(1.1);
   }
 `;

@@ -9,6 +9,12 @@ export const TextoCalculo = styled.h3`
   font-size: ${(props) => props.size};
   text-decoration: none;
   outline: none;
+  &:focus {
+    transform: scale(1.05);
+  }
+  &:hover {
+    transform: scale(1.05);
+  }
 `;
 
 export const ContainerCalcular = styled.div`

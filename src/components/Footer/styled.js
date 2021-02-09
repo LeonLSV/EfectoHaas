@@ -9,4 +9,7 @@ export const Anchor = styled.a`
   &:focus {
     border-bottom: 2px solid white;
   }
+  &:hover {
+    border-bottom: 2px solid white;
+  }
 `;
