@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Col, Row, Tooltip, Modal, Image } from "antd";
+import { Col, Row, Tooltip } from "antd";
 import {
   TextoCalculo,
   ContainerCalcular,
@@ -10,7 +10,6 @@ import {
 } from "./style";
 import { Link } from "react-router-dom";
 import Resultado from "../Resultados";
-import mapa from "../../images/mapa.png";
 import Draw from "../Draw";
 
 const centerTodo = {
