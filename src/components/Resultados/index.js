@@ -5,7 +5,7 @@ const Resultado = (props) => {
   return (
     <>
       <Row>
-        <Col span={24} style={{ padding: "20px" }}>
+        <Col span={24} style={{ padding: "20px", position: "relative" }}>
           <span className="nes-text">Atenuación</span>
           <br />
           <span className="nes-text " style={{ color: "white" }}>

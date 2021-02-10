@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import Resultado from "../Resultados";
 import mapa from "../../images/mapa.png";
+import Draw from "../Draw";
 
 const centerTodo = {
   display: "flex",
@@ -29,21 +30,9 @@ const centerCol = {
 };
 
 export const Calculo = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
   //INPUTS
-  const [valorIniciallargo, setValoriniciallargo] = useState("10");
-  const [valorInicialancho, setValorInicialancho] = useState("6");
+  const [valorIniciallargo, setValoriniciallargo] = useState("6");
+  const [valorInicialancho, setValorInicialancho] = useState("12");
   const [valorInicialY, setValorInicialY] = useState("2");
   const [valorInicialX, setValorInicialX] = useState("2");
   const [valorInicialpaneo, setValorInicialpaneo] = useState("45");
@@ -102,6 +91,7 @@ export const Calculo = () => {
     const distXX = parseInt(distXx.current.value);
     const sample = parseInt(sampleInput.current.value);
     const paneoEntrada = parseInt(paneoInput.current.value);
+
     if (
       largo <= 0 ||
       ancho <= 0 ||
@@ -113,6 +103,22 @@ export const Calculo = () => {
       alert(
         "Por favor ingrese números mayores a 0 (Excepto en Dist X que si permite valores negativos y el 0)"
       );
+    } else if (distYY > largo) {
+      alert("El valor de Dist Y no puede ser mayor al largo del recinto.");
+    } else if (distXX > ancho / 2) {
+      alert(
+        "El valor de Dist X no puede ser mayor a la mitad del ancho del recinto."
+      );
+    } else if (distXX <= ancho / -2) {
+      alert(
+        "El valor de Dist X no puede ser mayor o igual a la mitad del ancho del recinto."
+      );
+    } else if (paneoEntrada > 100) {
+      alert("El paneo no puede ser mayor de 100");
+    } else if (temp > 60) {
+      alert("Epa, ¿En donde vivis? ¿Estás Seguro que la temperatura es esa?");
+    } else if (temp < -30) {
+      alert("Revisa el valor de grados");
     } else {
       const mitadAncho = ancho / 2;
       const restoYLeft = mitadAncho + distXX;
@@ -207,7 +213,7 @@ export const Calculo = () => {
       setSamples4(sample4);
     }
   };
-
+  // console.log(valorInicialY);
   return (
     <>
       <Row justify="center">
@@ -330,7 +336,7 @@ export const Calculo = () => {
                   id="X"
                   className="nes-input"
                   ref={distXx}
-                  style={{ width: "80px", fontSize: "12px" }}
+                  style={{ width: "90px", fontSize: "12px" }}
                 />
               </ContainerEfectoInput>
             </Col>
@@ -418,20 +424,17 @@ export const Calculo = () => {
           </ButtonFocus>
         </ContainerCalcular>
       </Row>
-      <Row justify="center" styled={centerTodo}>
-        <ContainerCalcular>
-          <ButtonFocus type="button" className="nes-btn " onClick={showModal}>
-            Ver Mapa
-          </ButtonFocus>
 
-          <Modal
-            title="Mapa"
-            visible={isModalVisible}
-            onOk={handleOk}
-            onCancel={handleCancel}>
-            <Image width={200} src={mapa} />
-          </Modal>
-        </ContainerCalcular>
+      <Row justify="center" align="middle" style={{ margin: "30px 0" }}>
+        <Col>
+          <Draw
+            largo={valorIniciallargo * 40}
+            ancho={valorInicialancho * 40}
+            izq={valorInicialY * -40}
+            der={valorInicialX * -40}
+            margi={valorInicialancho * 18}
+          />
+        </Col>
       </Row>
 
       <Row justify="center" style={{ marginTop: "50px" }}>

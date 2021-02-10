@@ -41,6 +41,6 @@ export const ContainerEfecto = styled.div`
 
 export const ButtonFocus = styled.button`
   &:focus {
-    transform: scale(1.1);
+    transform: scale(1.02);
   }
 `;
