@@ -31,9 +31,9 @@ const centerCol = {
 export const Calculo = () => {
   //INPUTS
   const [valorIniciallargo, setValoriniciallargo] = useState("6");
-  const [valorInicialancho, setValorInicialancho] = useState("12");
-  const [valorInicialY, setValorInicialY] = useState("2");
-  const [valorInicialX, setValorInicialX] = useState("2");
+  const [valorInicialancho, setValorInicialancho] = useState("8");
+  const [valorInicialY, setValorInicialY] = useState("4");
+  const [valorInicialX, setValorInicialX] = useState("-3");
   const [valorInicialpaneo, setValorInicialpaneo] = useState("45");
   const [valorInicialsample, setValorInicialsample] = useState("48000");
   const [valorInicialtemperatura, setValorInicialtemperatura] = useState("20");
@@ -212,7 +212,6 @@ export const Calculo = () => {
       setSamples4(sample4);
     }
   };
-  // console.log(valorInicialY);
   return (
     <>
       <Row justify="center">
