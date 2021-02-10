@@ -4,14 +4,14 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Press Start 2P", cursive;
+  font-family: "Press Start 2P", Helvetica;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(90deg, #559b65, #94c453);
 }
 
 code {
-  font-family: "Press Start 2P", cursive;
+  font-family: "Press Start 2P", Helvetica;
 }
 
 ::-webkit-scrollbar {
@@ -23,5 +23,5 @@ code {
 }
 
 body::-webkit-scrollbar-track {
-  background: #559b65; /* color of the tracking area */
+  background: #559b65;
 }
