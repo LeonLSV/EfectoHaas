@@ -9,6 +9,8 @@ import {
   AnchorLogo,
 } from "./style";
 import { Link } from "react-router-dom";
+import YouTube from "react-youtube";
+import "./index.css";
 
 const centerTodo = {
   display: "flex",
@@ -55,6 +57,11 @@ export const Title = () => {
             rel="noopener noreferer">
             <LogoHome src={logonegro} alt="Logo LSV" />
           </AnchorLogo>
+        </Col>
+      </Row>
+      <Row justify="center">
+        <Col>
+          <YouTube videoId="yeRy-yj5bms" className="video" />
         </Col>
       </Row>
     </>
